@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Банана — компьютерный магазин</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ШАПКА -->
+  <header class="header">
+    <div class="container header__inner">
+      
+      <!-- Лого -->
+      <a href="index.html" class="logo">
+        <img src="pics/logo.png" alt="Банана" class="logo__img">
+      </a>
+
+      <!-- Навигация -->
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Главная</a></li>
+          <li><a href="catalog.html" class="nav__link">Каталог</a></li>
+          <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <!-- Поиск -->
+      <div class="header__search">
+        <input type="text" placeholder="Поиск по товарам..." id="searchInput" class="search-input">
+        <button class="search-btn" id="searchBtn">🔍</button>
+      </div>
+
+      <!-- Корзина -->
+      <a href="cart.html" class="cart-link" id="cartLink">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+
+    </div>
+  </header>
+  <main>
+
+    <!-- АКЦИИ -->
+    <section class="slider-section">
+      <div class="container">
+        <div class="slider" id="mainSlider">
+          <div class="slider__container">
+            
+            <!-- Контейнер для слайдов -->
+            <div class="slider__slides">
+              
+              <!-- Первый слайд -->
+              <div class="slide">
+                <img src="pics/slide1.png" alt="Скидки на ноутбуки">
+                <!-- Текст картинки -->
+                <div class="slide__caption">
+                  <h2>Скидки до 30% на ноутбуки</h2>
+                  <p>Только до конца месяца</p>
+                </div>
+              </div>
+              
+              <!-- Второй слайд -->
+              <div class="slide">
+                <img src="pics/slide2.png" alt="Игровые ПК">
+                <div class="slide__caption">
+                  <h2>Игровые компьютеры</h2>
+                  <p>Для настоящих геймеров</p>
+                </div>
+              </div>
+              
+              <!-- Третий слайд -->
+              <div class="slide">
+                <img src="pics/slide3.png" alt="Периферия">
+                <div class="slide__caption">
+                  <h2>Клавиатуры и мыши</h2>
+                  <p>Со скидкой при покупке комплектом</p>
+                </div>
+              </div>
+              
+            </div>
+            
+            <!-- Кнопки переключения слайдов -->
+            <button class="slider__btn slider__btn--prev">❮</button> <!-- Предыдущий -->
+            <button class="slider__btn slider__btn--next">❯</button> <!-- Следующий -->
+            
+            <!-- Точки-индикаторы (заполняются через JS) -->
+            <div class="slider__dots"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+ <!-- ПОПУЛЯРНЫЕ КАТЕГОРИИ -->
+    <section class="categories">
+      <div class="container">
+        <h2 class="section-title">Популярные категории</h2>
+        <!-- Сетка из 4 карточек категорий -->
+        <div class="categories-grid">
+          
+          <!-- Категория "Ноутбуки" -->
+          <a href="catalog.html?category=laptops" class="category-card">
+            <img src="img/category-laptops.jpg" alt="Ноутбуки">
+            <h3>Ноутбуки</h3>
+          </a>
+          
+          <!-- Категория "Системные блоки" -->
+          <a href="catalog.html?category=desktops" class="category-card">
+            <img src="img/category-desktops.jpg" alt="Системные блоки">
+            <h3>Системные блоки</h3>
+          </a>
+          
+          <!-- Категория "Мониторы" -->
+          <a href="catalog.html?category=monitors" class="category-card">
+            <img src="img/category-monitors.jpg" alt="Мониторы">
+            <h3>Мониторы</h3>
+          </a>
+          
+          <!-- Категория "Аксессуары" -->
+          <a href="catalog.html?category=accessories" class="category-card">
+            <img src="img/category-accessories.jpg" alt="Аксессуары">
+            <h3>Аксессуары</h3>
+          </a>
+          
+        </div>
+      </div>
+    </section>
+    <!-- СЕКЦИЯ "ХИТЫ ПРОДАЖ" -->
+    <section class="featured-products">
+      <div class="container">
+        <h2 class="section-title">Хиты продаж</h2>
+        <!-- Сетка, куда будут вставлены карточки товаров из JS -->
+        <div class="products-grid" id="featuredGrid">
+          <!-- Здесь будут товары после загрузки страницы -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ПРЕИМУЩЕСТВ МАГАЗИНА -->
+    <section class="advantages">
+      <div class="container">
+        <div class="advantages-grid">
+          
+          <div class="advantage-item">
+            <span class="advantage-icon">🚚</span>
+            <h3>Быстрая доставка</h3>
+            <p>По всей России от 1 дня</p>
+          </div>
+          
+          <div class="advantage-item">
+            <span class="advantage-icon">🔧</span>
+            <h3>Гарантия качества</h3>
+            <p>Официальная гарантия до 3 лет</p>
+          </div>
+          
+          <div class="advantage-item">
+            <span class="advantage-icon">💳</span>
+            <h3>Удобная оплата</h3>
+            <p>Картой, наличными, в рассрочку</p>
+          </div>
+          
+          <div class="advantage-item">
+            <span class="advantage-icon">🎧</span>
+            <h3>Поддержка 24/7</h3>
+            <p>Ответим на любые вопросы</p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- КОНЕЦ САЙТА -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2025 Банана. Все права защищены.</p>
+      <p>ПИНЖ-13</p>
+    </div>
+  </footer>
+</body>
+</html>
