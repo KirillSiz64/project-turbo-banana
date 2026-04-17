@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты — Банана</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ШАПКА -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="Банана" class="logo__img">
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Главная</a></li>
+          <li><a href="catalog.html" class="nav__link">Каталог</a></li>
+          <li><a href="configurator.html" class="nav__link">Конфигуратор</a></li>
+          <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="header__search">
+        <input type="text" placeholder="Поиск по товарам..." id="searchInput" class="search-input">
+        <button class="search-btn" id="searchBtn">🔍</button>
+      </div>
+      <a href="cart.html" class="cart-link" id="cartLink">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- КОНТЕНТ СТРАНИЦЫ КОНТАКТОВ -->
+  <main class="contacts-page">
+    <div class="container">
+      <h1 class="page-title">Контакты</h1>
+
+      <!-- Двухколоночная сетка: информация + карта -->
+      <div class="contacts-grid">
+        
+        <!-- Левая колонка: контактные данные и форма -->
+        <div class="contacts-info">
+          <h2>Наши контакты</h2>
+          <ul class="contact-list">
+            <li><strong>📞 Телефон:</strong> <a href="tel:+78001234567">8 (800) 123-45-67</a></li>
+            <li><strong>📧 Email:</strong> <a href="mailto:info@banana.ru">info@banana.ru</a></li>
+            <li><strong>📍 Адрес:</strong> г. Саратов, Политехническая улица, 122</li>
+            <li><strong>🕒 Режим работы:</strong> Пн-Вс: 10:00 – 20:00</li>
+          </ul>
+
+          <h2>Форма обратной связи</h2>
+          <form id="feedbackForm" class="feedback-form">
+            <div class="form-group">
+              <input type="text" placeholder="Ваше имя" required>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+              <textarea placeholder="Ваше сообщение" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary">Отправить</button>
+          </form>
+        </div>
+
+        <!-- Правая колонка: Яндекс.Карта через iframe -->
+        <div class="contacts-map">
+          <div style="position:relative; overflow:hidden; border-radius:12px;">
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A6aefa1485cbe3c2cc75f442872452afc4684c054caef007c356aff023133a9ed&amp;source=constructor" width="600" height="450" frameborder="0">
+
+            </iframe>
+          </div>
+          <!-- Подпись под картой -->
+          <p style="margin-top:10px; text-align:center;">
+            <em>г. Саратов, Политехническая улица, 122</em>
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </main>
+
+  <!-- ПОДВАЛ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2025 Банана. Все права защищены.</p>
+      <p>ПИНЖ-13</p>
+    </div>
+  </footer>
+
+  <!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  
+  <!-- Обработчик для формы обратной связи -->
+  <script>
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Спасибо за обращение! Мы ответим в ближайшее время.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>

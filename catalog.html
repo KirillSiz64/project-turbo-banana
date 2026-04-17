@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог товаров — Банана</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ШАПКА (аналогична главной) -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="Банана" class="logo__img">
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Главная</a></li>
+          <li><a href="catalog.html" class="nav__link">Каталог</a></li>
+          <li><a href="configurator.html" class="nav__link">Конфигуратор</a></li>
+          <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="header__search">
+        <input type="text" placeholder="Поиск по товарам..." id="searchInput" class="search-input">
+        <button class="search-btn" id="searchBtn">🔍</button>
+      </div>
+      <a href="cart.html" class="cart-link" id="cartLink">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ОСНОВНОЙ КОНТЕНТ КАТАЛОГА -->
+  <main class="catalog-page">
+    <div class="container catalog-container">
+      
+      <!-- ========== БОКОВАЯ ПАНЕЛЬ ФИЛЬТРОВ ========== -->
+      <aside class="filters">
+        
+        <!-- Фильтр по категориям (радиокнопки - можно выбрать только одну) -->
+        <h3>Категории</h3>
+        <ul class="filter-group">
+          <li><label><input type="radio" name="category" value="all" checked> Все товары</label></li>
+          <li><label><input type="radio" name="category" value="laptops"> Ноутбуки</label></li>
+          <li><label><input type="radio" name="category" value="desktops"> Системные блоки</label></li>
+          <li><label><input type="radio" name="category" value="monitors"> Мониторы</label></li>
+          <li><label><input type="radio" name="category" value="accessories"> Аксессуары</label></li>
+        </ul>
+
+        <!-- Фильтр по цене (диапазон) -->
+        <h3>Цена, ₽</h3>
+        <div class="price-filter">
+          <!-- Поле для минимальной цены -->
+          <input type="number" id="priceMin" placeholder="от" min="0">
+          <span>—</span>
+          <!-- Поле для максимальной цены -->
+          <input type="number" id="priceMax" placeholder="до">
+        </div>
+
+        <!-- Фильтр по бренду (чекбоксы - можно выбрать несколько) -->
+        <h3>Бренд</h3>
+        <div class="filter-group">
+          <label><input type="checkbox" value="honor"> Honor</label>
+          <label><input type="checkbox" value="acer"> Acer</label>
+          <label><input type="checkbox" value="msi"> MSI</label>
+          <label><input type="checkbox" value="logitech"> Logitech</label>
+        </div>
+
+        <!-- Кнопки управления фильтрацией -->
+        <button class="btn btn--primary" id="applyFilters">Применить</button>
+        <button class="btn btn--secondary" id="resetFilters">Сбросить</button>
+      </aside>
+
+      <!-- ========== ПРАВАЯ ЧАСТЬ: СОРТИРОВКА И СЕТКА ТОВАРОВ ========== -->
+      <section class="catalog-content">
+        
+        <!-- Верхняя панель с сортировкой -->
+        <div class="catalog-header">
+          <!-- Выпадающий список для выбора порядка сортировки -->
+          <select id="sortSelect">
+            <option value="default">По умолчанию</option>
+            <option value="price-asc">Цена ↑ (дешёвые сначала)</option>
+            <option value="price-desc">Цена ↓ (дорогие сначала)</option>
+            <option value="rating">По рейтингу</option>
+          </select>
+        </div>
+
+        <!-- Сетка товаров (будет заполнена через JavaScript) -->
+        <div class="products-grid" id="productsGrid">
+          <!-- Здесь появятся карточки товаров -->
+        </div>
+        
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ПОДВАЛ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2025 Банана. Все права защищены.</p>
+      <p>ПИНЖ-13</p>
+    </div>
+  </footer>
+
+  <!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
+  <script src="js/main.js"></script>    <!-- Общие функции -->
+  <script src="js/cart.js"></script>    <!-- Логика корзины -->
+  <script src="js/catalog.js"></script> <!-- Данные товаров и функции фильтрации -->
+  
+  <!-- Инициализация каталога после загрузки DOM -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Первоначальная отрисовка всех товаров (функция из catalog.js)
+      renderProductGrid(products);
+      
+      // Назначаем обработчики событий на кнопки фильтров
+      document.getElementById('applyFilters').addEventListener('click', filterProducts);
+      document.getElementById('resetFilters').addEventListener('click', resetFilters);
+      document.getElementById('sortSelect').addEventListener('change', filterProducts);
+    });
+  </script>
+</body>
+</html>

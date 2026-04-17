@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оформление заказа — Банана</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ШАПКА -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="Банана" class="logo__img">
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Главная</a></li>
+          <li><a href="catalog.html" class="nav__link">Каталог</a></li>
+          <li><a href="configurator.html" class="nav__link">Конфигуратор</a></li>
+          <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="header__search">
+        <input type="text" placeholder="Поиск по товарам..." id="searchInput" class="search-input">
+        <button class="search-btn" id="searchBtn">🔍</button>
+      </div>
+      <a href="cart.html" class="cart-link" id="cartLink">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ФОРМА ОФОРМЛЕНИЯ ЗАКАЗА -->
+  <main class="checkout-page">
+    <div class="container">
+      <h1 class="page-title">Оформление заказа</h1>
+
+      <!-- Форма. При отправке будет происходить валидация через JS -->
+      <form id="checkoutForm" class="checkout-form">
+        
+        <!-- Поле "ФИО" (обязательное) -->
+        <div class="form-group">
+          <label for="name">ФИО *</label>
+          <input type="text" id="name" name="name" required>
+          <!-- Сюда будет выводиться текст ошибки, если поле невалидно -->
+          <span class="error-message" data-for="name"></span>
+        </div>
+
+        <!-- Поле "Телефон" (обязательное) -->
+        <div class="form-group">
+          <label for="phone">Телефон *</label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+          <span class="error-message" data-for="phone"></span>
+        </div>
+
+        <!-- Поле "Email" (необязательное) -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email">
+        </div>
+
+        <!-- Поле "Адрес доставки" (обязательное) -->
+        <div class="form-group">
+          <label for="address">Адрес доставки *</label>
+          <textarea id="address" name="address" rows="3" required></textarea>
+          <span class="error-message" data-for="address"></span>
+        </div>
+
+        <!-- Выбор способа доставки -->
+        <div class="form-group">
+          <label>Способ доставки</label>
+          <select name="delivery" id="delivery">
+            <option value="courier">Курьером</option>
+            <option value="pickup">Самовывоз</option>
+            <option value="post">Почта России</option>
+          </select>
+        </div>
+
+        <!-- Выбор способа оплаты (радиокнопки) -->
+        <div class="form-group">
+          <label>Способ оплаты</label>
+          <div class="radio-group">
+            <label><input type="radio" name="payment" value="card" checked> Банковская карта</label>
+            <label><input type="radio" name="payment" value="cash"> Наличные при получении</label>
+          </div>
+        </div>
+
+        <!-- Кнопка отправки формы -->
+        <button type="submit" class="btn btn--large btn--primary">Подтвердить заказ</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- ПОДВАЛ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2025 Банана. Все права защищены.</p>
+      <p>ПИНЖ-13</p>
+    </div>
+  </footer>
+
+  <!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  
+  <!-- Валидация и обработка отправки формы -->
+  <script>
+    // Получаем форму по id и вешаем обработчик события submit
+    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Отменяем стандартную отправку (перезагрузку страницы)
+      let isValid = true; // Флаг валидности всей формы
+      
+      // Очищаем все сообщения об ошибках перед проверкой
+      document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+      // --- ПРОВЕРКА ИМЕНИ ---
+      const name = document.getElementById('name').value.trim(); // Убираем пробелы по краям
+      if (name.length < 3) {
+        // Показываем ошибку в соответствующем span
+        showError('name', 'Введите полное имя (минимум 3 символа)');
+        isValid = false;
+      }
+
+      // --- ПРОВЕРКА ТЕЛЕФОНА ---
+      const phone = document.getElementById('phone').value.trim();
+      // Простое регулярное выражение для российских номеров
+      const phoneRegex = /^(\+7|8)?[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
+      if (!phoneRegex.test(phone)) {
+        showError('phone', 'Введите корректный номер телефона');
+        isValid = false;
+      }
+
+      // --- ПРОВЕРКА АДРЕСА ---
+      const address = document.getElementById('address').value.trim();
+      if (address.length < 10) {
+        showError('address', 'Укажите полный адрес (не менее 10 символов)');
+        isValid = false;
+      }
+
+      // --- ЕСЛИ ВСЁ ВАЛИДНО ---
+      if (isValid) {
+        alert('Заказ оформлен! Спасибо за покупку.');
+        clearCart(); // Очищаем корзину (функция из cart.js)
+        window.location.href = 'index.html'; // Перенаправляем на главную
+      }
+    });
+
+    /**
+     * Вспомогательная функция для вывода сообщения об ошибке
+     * @param {string} fieldId - id поля ввода
+     * @param {string} message - текст ошибки
+     */
+    function showError(fieldId, message) {
+      // Ищем span с атрибутом data-for, равным fieldId
+      const errorSpan = document.querySelector(`.error-message[data-for="${fieldId}"]`);
+      if (errorSpan) errorSpan.textContent = message;
+    }
+  </script>
+</body>
+</html>

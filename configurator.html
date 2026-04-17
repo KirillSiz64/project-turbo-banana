@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Конфигуратор ПК — Банана</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ШАПКА (обновлённая с пунктом "Конфигуратор") -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="Банана" class="logo__img">
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Главная</a></li>
+          <li><a href="catalog.html" class="nav__link">Каталог</a></li>
+          <li><a href="configurator.html" class="nav__link">Конфигуратор</a></li>
+          <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="header__search">
+        <input type="text" placeholder="Поиск по товарам..." id="searchInput" class="search-input">
+        <button class="search-btn" id="searchBtn">🔍</button>
+      </div>
+      <a href="cart.html" class="cart-link" id="cartLink">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ОСНОВНОЙ КОНТЕНТ КОНФИГУРАТОРА -->
+  <main class="configurator-page">
+    <div class="container">
+      <h1 class="page-title">Собери свой ПК</h1>
+
+      <!-- Двухколоночный макет: слева выбор комплектующих, справа сводка -->
+      <div class="configurator-layout">
+        
+        <!-- ЛЕВАЯ ЧАСТЬ: список категорий и вариантов -->
+        <div class="configurator-selection">
+          
+          <!-- Панель категорий (горизонтальные вкладки) -->
+          <div class="category-tabs" id="categoryTabs">
+            <!-- Заполняются динамически через JS -->
+          </div>
+
+          <!-- Контейнер для списка компонентов выбранной категории -->
+          <div class="components-list" id="componentsList">
+            <!-- Здесь будут отображаться карточки комплектующих -->
+          </div>
+
+          <!-- Кнопки навигации по шагам (опционально) -->
+          <div class="configurator-nav">
+            <button class="btn btn--secondary" id="prevCategoryBtn">← Назад</button>
+            <button class="btn btn--primary" id="nextCategoryBtn">Далее →</button>
+          </div>
+        </div>
+
+        <!-- ПРАВАЯ ЧАСТЬ: сводка выбранной конфигурации -->
+        <div class="configurator-summary">
+          <h2>Ваша сборка</h2>
+          <div id="summaryList" class="summary-list">
+            <!-- Динамически заполняется выбранными компонентами -->
+          </div>
+          <div class="summary-total">
+            <span>Итого:</span>
+            <span id="totalPrice">0 ₽</span>
+          </div>
+          <button class="btn btn--large btn--primary" id="addConfigToCart" disabled>
+            Добавить сборку в корзину
+          </button>
+          <p class="config-note">Для завершения сборки выберите все компоненты.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ПОДВАЛ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2025 Банана. Все права защищены.</p>
+      <p>ПИНЖ-13</p>
+    </div>
+  </footer>
+
+  <!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>   <!-- Данные комплектующих -->
+  <script src="js/configurator.js"></script> <!-- Логика конфигуратора -->
+</body>
+</html>
