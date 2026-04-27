@@ -161,6 +161,18 @@ function renderCart() {
   
   // Обновляем итоговую сумму
   document.getElementById('cartTotalAmount').textContent = getCartTotal().toLocaleString() + ' ₽';
+}
+
+/**
+ * Подключает обработчики событий для кнопок внутри таблицы корзины
+ * Важно: вызывается один раз при загрузке страницы, а не внутри renderCart(),
+ * чтобы обработчики не дублировались после каждой перерисовки корзины.
+ */
+function attachCartEvents() {
+  const container = document.getElementById('cartItemsContainer'); // tbody таблицы
+  
+  // Если контейнер не найден (мы не на странице корзины) – выходим
+  if (!container) return;
   
   // === Делегирование событий для кнопок в таблице ===
   container.addEventListener('click', (e) => {
@@ -180,3 +192,9 @@ function renderCart() {
     }
   });
 }
+
+// После загрузки DOM отрисовываем корзину и один раз подключаем обработчики
+document.addEventListener('DOMContentLoaded', () => {
+  renderCart();
+  attachCartEvents();
+});
