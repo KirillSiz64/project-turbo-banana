@@ -8,7 +8,7 @@ const products = [
     brand: 'honor',           // Бренд для фильтрации
     price: 74990,             // Цена в рублях (число)
     rating: 4.8,              // Рейтинг от 1 до 5
-    image: 'img/products/laptop1.jpg',
+    image: 'img/products/honor_magicbook_x16.png',
     inStock: true
   },
   {
@@ -18,7 +18,7 @@ const products = [
     brand: 'msi',
     price: 129990,
     rating: 4.9,
-    image: 'img/products/desktop1.jpg',
+    image: 'img/products/msi_infinite_s.png',
     inStock: true
   },
   {
@@ -28,7 +28,7 @@ const products = [
     brand: 'acer',
     price: 35990,
     rating: 4.7,
-    image: 'img/products/monitor1.jpg',
+    image: 'img/products/acer_nitro.png',
     inStock: true
   },
   {
@@ -38,7 +38,7 @@ const products = [
     brand: 'logitech',
     price: 12990,
     rating: 4.6,
-    image: 'img/products/keyboard1.jpg',
+    image: 'img/products/logitech_g_pro.png',
     inStock: true
   },
   {
@@ -48,7 +48,7 @@ const products = [
     brand: 'acer',
     price: 59990,
     rating: 4.5,
-    image: 'img/products/laptop2.jpg',
+    image: 'img/products/acer_aspire_5.png',
     inStock: true
   },
   {
@@ -58,7 +58,7 @@ const products = [
     brand: 'msi',
     price: 189990,
     rating: 5.0,
-    image: 'img/products/desktop2.jpg',
+    image: 'img/products/msi_trident.png',
     inStock: true
   }
 ];
