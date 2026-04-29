@@ -143,7 +143,6 @@ function renderProductGrid(items) {
         <div class="product-card__price">${p.price.toLocaleString()} ₽</div>
         <div class="product-card__actions">
           <button class="btn btn--primary add-to-cart">В корзину</button>
-          <button class="btn btn--icon wishlist-btn" title="В избранное">❤️</button>
         </div>
       </div>
     </article>

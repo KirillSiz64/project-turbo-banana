@@ -8,7 +8,7 @@ const cpus = [
     category: 'cpu',
     socket: 'LGA1700',        // Сокет, должен совпадать с материнской платой
     price: 18990,
-    image: 'img/components/cpu1.jpg',
+    image: 'img/components/cpu1.png',
     tdp: 65,                  // Тепловыделение (для рекомендации блока питания)
     memoryType: 'DDR4'        // Поддерживаемый тип памяти (для фильтра ОЗУ)
   },
@@ -28,7 +28,7 @@ const cpus = [
     category: 'cpu',
     socket: 'LGA1700',
     price: 35990,
-    image: 'img/components/cpu3.jpg',
+    image: 'img/components/cpu1.png',
     tdp: 125,
     memoryType: 'DDR5'
   }
@@ -98,7 +98,7 @@ const rams = [
     type: 'DDR5',
     size: 32,
     price: 14990,
-    image: 'img/components/ram3.jpg'
+    image: 'img/components/ram1.jpg'
   }
 ];
 
@@ -118,7 +118,7 @@ const gpus = [
     category: 'gpu',
     price: 29990,
     tdp: 165,
-    image: 'img/components/gpu2.jpg'
+    image: 'img/components/gpu1.jpg'
   },
   {
     id: 'gpu3',
@@ -126,7 +126,7 @@ const gpus = [
     category: 'gpu',
     price: 79990,
     tdp: 285,
-    image: 'img/components/gpu3.jpg'
+    image: 'img/components/gpu1.jpg'
   }
 ];
 
@@ -176,7 +176,7 @@ const psus = [
     category: 'psu',
     power: 850,
     price: 13990,
-    image: 'img/components/psu3.jpg'
+    image: 'img/components/psu3.png'
   }
 ];
 

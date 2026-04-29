@@ -283,7 +283,7 @@ document.getElementById('addConfigToCart').addEventListener('click', () => {
     id: configId,
     title: 'Сборка ПК: ' + categories.map(cat => selectedComponents[cat.id].name.split(' ').slice(0,2).join(' ')).join(', '),
     price: totalPrice,
-    image: 'img/components/pc-build.jpg', // Заглушка или можно сгенерировать
+    image: 'img/components/pc-build.png', // Заглушка или можно сгенерировать
     quantity: 1,
     isConfig: true,
     components: { ...selectedComponents } // Сохраняем состав для информации

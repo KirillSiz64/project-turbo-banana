@@ -169,16 +169,6 @@ ul {
   background: #0f2a42;
 }
 
-.btn--icon {
-  background: #f0f2f5;
-  color: #0B1E33;
-  padding: 12px;
-}
-
-.btn--icon:hover {
-  background: #e0e3e8;
-}
-
 .btn--large {
   padding: 16px 24px;
   font-size: 16px;
