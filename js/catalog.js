@@ -1,6 +1,7 @@
-// ========== ДАННЫЕ ТОВАРОВ (имитация базы данных) ==========
-// В реальном проекте эти данные загружались бы с сервера через fetch
-const products = [
+// ========== ДАННЫЕ ТОВАРОВ (базовые + комплектующие из конфигуратора) ==========
+
+// Базовые товары (ноутбуки, системные блоки, мониторы, аксессуары)
+const baseProducts = [
   {
     id: '1',
     title: 'Ноутбук Honor MagicBook X16',
@@ -63,6 +64,67 @@ const products = [
   }
 ];
 
+/*
+ * Функция преобразования комплектующего (из componentDB) 
+ * в объект товара для каталога.
+ * comp - исходный объект компонента (например, из componentDB.cpu)
+ */
+function convertComponentToProduct(comp) {
+  // Определяем бренд по названию (простой вариант)
+  let brand = 'unknown';
+  const nameLower = comp.name.toLowerCase();
+  if (nameLower.includes('intel')) brand = 'intel';
+  else if (nameLower.includes('amd')) brand = 'amd';
+  else if (nameLower.includes('msi')) brand = 'msi';
+  else if (nameLower.includes('asus')) brand = 'asus';
+  else if (nameLower.includes('gigabyte')) brand = 'gigabyte';
+  else if (nameLower.includes('kingston')) brand = 'kingston';
+  else if (nameLower.includes('corsair')) brand = 'corsair';
+  else if (nameLower.includes('samsung')) brand = 'samsung';
+  else if (nameLower.includes('deepcool')) brand = 'deepcool';
+  else if (nameLower.includes('be quiet')) brand = 'be quiet';
+  else if (nameLower.includes('zalman')) brand = 'zalman';
+  else if (nameLower.includes('nvidia')) brand = 'nvidia';
+  else {
+    brand = comp.name.split(' ')[0].toLowerCase(); // первое слово как бренд
+  }
+
+  // Возвращаем объект в формате каталога
+  return {
+    id: comp.id,
+    title: comp.name,
+    category: comp.category, // 'cpu', 'motherboard', 'ram', 'gpu', 'storage', 'psu', 'case'
+    brand: brand,
+    price: comp.price,
+    rating: 4.5, // нейтральный рейтинг для комплектующих
+    image: comp.image || 'img/components/placeholder.jpg',
+    inStock: true
+  };
+}
+
+/*
+ * Формируем полный массив товаров каталога:
+ * - сначала базовые товары,
+ * - затем все комплектующие из конфигуратора.
+ * Для этого мы "разворачиваем" (spread-оператор) массивы,
+ * полученные из componentDB и преобразованные через convertComponentToProduct.
+ * 
+ * ВАЖНО: переменная componentDB должна быть уже объявлена (подключена из components.js)
+ * до выполнения этого кода. Поэтому в HTML-файлах нужно подключать:
+ *   <script src="js/components.js"></script>
+ *   <script src="js/catalog.js"></script>
+ */
+const products = [
+  ...baseProducts,
+  ...componentDB.cpu.map(convertComponentToProduct),
+  ...componentDB.motherboard.map(convertComponentToProduct),
+  ...componentDB.ram.map(convertComponentToProduct),
+  ...componentDB.gpu.map(convertComponentToProduct),
+  ...componentDB.storage.map(convertComponentToProduct),
+  ...componentDB.psu.map(convertComponentToProduct),
+  ...componentDB.case.map(convertComponentToProduct)
+];
+
 // ========== ФУНКЦИИ ДЛЯ КАТАЛОГА ==========
 
 /**
@@ -85,7 +147,6 @@ function filterProducts() {
   filtered = filtered.filter(p => p.price >= min && p.price <= max);
   
   // 3. ФИЛЬТР ПО БРЕНДАМ (checkbox)
-  // Получаем массив значений отмеченных чекбоксов
   const checkedBrands = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
     .map(cb => cb.value);
   if (checkedBrands.length > 0) {
@@ -174,16 +235,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const categoryParam = urlParams.get('category');
   
   if (searchQuery) {
-    // Если есть поисковый запрос, фильтруем по названию (без учёта регистра)
     const filtered = products.filter(p => 
       p.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
     renderProductGrid(filtered);
-    // Заполняем поле поиска в шапке этим запросом
     const searchInput = document.getElementById('searchInput');
     if (searchInput) searchInput.value = searchQuery;
   } else if (categoryParam) {
-    // Если указана категория в URL, выбираем соответствующую радиокнопку и применяем фильтры
     const radio = document.querySelector(`input[name="category"][value="${categoryParam}"]`);
     if (radio) {
       radio.checked = true;
@@ -192,7 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
       renderProductGrid(products);
     }
   } else {
-    // Если нет параметров, просто показываем все товары
     renderProductGrid(products);
   }
 });
